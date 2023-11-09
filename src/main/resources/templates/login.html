@@ -1,0 +1,64 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+>
+<head>
+    <title>Create Club</title>
+</head>
+<body class="d-flex flex-column">
+<main>
+    <section layout:fragment="body" class="py-5">
+        <div th:if="${param.error}" class="alert alert-danger mb-3">
+            Your username or password is incorrect!
+        </div>
+        <div th:if="${param.logout}" class="alert alert-info mb-3">
+            You have successfully been logged out!
+        </div>
+
+        <!-- Login Form -->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body p-5">
+
+                        <form method="post" th:action="@{/login}" class="mb-2">
+                            <h2 class="fw-bold mb-2 text-uppercase text-center">Login</h2>
+                            <p class="mb-5 text-center">Please enter your username and password!</p>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="username">Username</label>
+                                <input type="text" id="username" name="username" class="form-control form-control-lg"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control form-control-lg"/>
+                            </div>
+
+                            <button class="btn btn-primary w-100" value="Log in" type="submit">Login</button>
+
+                        </form>
+
+                        <div>
+                            <p class="mb-0 text-center">
+                                Don't have an account?
+                                <a th:href="@{/register}" class="fw-bold">Register</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-none d-md-flex col-md-6 align-items-center">
+
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                     class="img-fluid" alt="Sample image">
+
+            </div>
+        </div>
+        <!-- Login Form -->
+
+
+    </section>
+</main>
+</body>
+</html>

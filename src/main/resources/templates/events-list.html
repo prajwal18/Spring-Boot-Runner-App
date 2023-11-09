@@ -1,0 +1,45 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>All Events</title>
+</head>
+<body class="d-flex flex-column">
+<main>
+
+    <section layout:fragment="body" class="py-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bolder">Running Events Near You</h1>
+            <p class="lead fw-normal text-muted mb-0">Runner's Nepal - Events List</p>
+        </div>
+        <div class="row gx-5">
+            <div class="mb-3">
+                <form th:action="@{/events/search}">
+                    <input name="query" class="form-control" th:value="${query}" placeholder="Search running events"/>
+                </form>
+            </div>
+
+            <div th:each="event :${events}" class="col-lg-6 mb-5">
+                <div class="position-relative mb-2">
+                    <img class="img-fluid rounded-3 mb-3" style="width:100%;height:300px;object-fit:cover;"
+                         th:src="${event.photoUrl}" th:alt="${event.name}"/>
+                    <a th:text="${event.name}" class="h3 fw-bolder text-decoration-none link-dark stretched-link"
+                       th:href="@{/events/{eventId}(eventId=${event.id})}"></a>
+                </div>
+                <span th:if="${event.club.createdBy.id} == ${user.id}">
+                    <a class="btn btn-secondary" th:href="@{/events/{eventId}/edit(eventId=${event.id})}">
+                        <i class="bi bi-pencil-fill"></i>
+                        Edit
+                    </a>
+                </span>
+                <a class="btn btn-primary" th:href="@{/events/{eventId}(eventId=${event.id})}">
+                    <i class="bi bi-eye-fill"></i>
+                    View
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>

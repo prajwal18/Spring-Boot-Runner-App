@@ -1,0 +1,46 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Create Club</title>
+</head>
+<body class="d-flex flex-column">
+<main>
+    <section layout:fragment="body" class="py-5">
+        <form role="form" method="POST" th:action="@{/clubs/new}" th:object="${club}">
+            <h3 class="mb-3">Create A New Club</h3>
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="form-group mb-3">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" th:field="*{title}"
+                               placeholder="Title">
+                        <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="photoUrl">Photo URL</label>
+                        <input type="text" class="form-control" id="photoUrl" name="photoUrl" th:field="*{photoUrl}"
+                               placeholder="Photo URL">
+                        <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="content">Content / Description</label>
+                        <input type="text" class="form-control" id="content" name="content" th:field="*{content}"
+                               placeholder="Description ...">
+                        <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-6">
+                    <img
+                            src="https://www.lifewire.com/thmb/tHjH9M19MsA9gFY-qcZvKYv5oG4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/cloud-upload-a30f385a928e44e199a62210d578375a.jpg"
+                            alt="Uploaded Image"
+                            style="height:270px; width:full; object-fit:cover;"
+                    />
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

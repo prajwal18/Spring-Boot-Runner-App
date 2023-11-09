@@ -1,0 +1,57 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Create Event</title>
+</head>
+<body class="d-flex flex-column">
+<main>
+    <section layout:fragment="body" class="py-5">
+        <form role="form" method="POST" th:action="@{/clubs/{clubId}/events/new(clubId=${clubId})}" th:object="${event}">
+            <h3 class="mb-3">Create A New Event</h3>
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="form-group mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+                               placeholder="Name">
+                        <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="type">Event Type</label>
+                        <input type="text" class="form-control" id="type" name="type" th:field="*{type}"
+                               placeholder="Event Type ...">
+                        <p th:if="${#fields.hasErrors('type')}" class="text-danger" th:errors="*{type}"></p>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="startTime">Start Date and Time</label>
+                        <input type="datetime-local" class="form-control" id="startTime" name="startTime" th:field="*{startTime}">
+                        <p th:if="${#fields.hasErrors('startTime')}" class="text-danger" th:errors="*{startTime}"></p>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="endTime">End Date and Time</label>
+                        <input type="datetime-local" class="form-control" id="endTime" name="endTime" th:field="*{endTime}">
+                        <p th:if="${#fields.hasErrors('endTime')}" class="text-danger" th:errors="*{endTime}"></p>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="photoUrl">Photo URL</label>
+                        <input type="text" class="form-control" id="photoUrl" name="photoUrl" th:field="*{photoUrl}"
+                               placeholder="Photo URL">
+                        <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <div class="col-6">
+                    <img
+                            src="https://www.lifewire.com/thmb/tHjH9M19MsA9gFY-qcZvKYv5oG4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/cloud-upload-a30f385a928e44e199a62210d578375a.jpg"
+                            alt="Uploaded Image"
+                            style="height:270px; width:full; object-fit:cover;"
+                    />
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>
